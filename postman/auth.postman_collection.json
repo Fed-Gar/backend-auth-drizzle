@@ -1,0 +1,119 @@
+{
+  "info": {
+    "_postman_id": "auth-collection",
+    "name": "Auth (Drizzle)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_exported_at": "2026-01-17T02:34:47.220289Z"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrlAuth}}/health",
+          "host": [
+            "{{baseUrlAuth}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrlAuth}}/auth/register",
+          "host": [
+            "{{baseUrlAuth}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"foo@bar.com\",\n  \"password\": \"secret123\",\n  \"nombre\": \"Foo\",\n  \"rol\": \"admin\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login (sets {{jwt}})",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Save token to environment variable 'jwt'",
+              "const data = pm.response.json();",
+              "if (data && data.token) {",
+              "  pm.environment.set('jwt', data.token);",
+              "} else {",
+              "  pm.test('Token not found in response', function(){",
+              "    pm.expect(false).to.be.true;",
+              "  });",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrlAuth}}/auth/login",
+          "host": [
+            "{{baseUrlAuth}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"foo@bar.com\",\n  \"password\": \"secret123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrlAuth}}/auth/me",
+          "host": [
+            "{{baseUrlAuth}}"
+          ],
+          "path": [
+            "auth",
+            "me"
+          ]
+        }
+      }
+    }
+  ]
+}
