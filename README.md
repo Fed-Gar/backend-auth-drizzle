@@ -54,6 +54,9 @@ src/
 │  └─ schema.ts        # Tabla usuarios
 └─ modules/
    └─ auth/            # controller.ts, types.ts (zod)
+postman/
+├─ auth.postman_collection.json
+└─ local.postman_evironment.json
 
 📚 Scripts NPM
 {
