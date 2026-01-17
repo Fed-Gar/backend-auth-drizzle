@@ -1,0 +1,24 @@
+# Node
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build/TS
+dist
+*.tsbuildinfo
+
+# Env
+.env
+.env.*.local
+
+# Drizzle
+drizzle
+.drizzle
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+.eslintcache
