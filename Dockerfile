@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Instalar dependencias primero (cache-friendly)
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 # Copiar el resto
 COPY . .

@@ -5,9 +5,9 @@ Opción A — Docker Compose
 
 Ejecutar desde la carpeta raíz donde está docker-compose.yml (la que levanta postgres, auth y finanzas).
 
-docker compose up -d --build
+docker compose build --no-cache
+docker compose up -d
 docker compose logs -f auth
-
 
 El contenedor corre: db:generate → db:migrate → dev.
 
